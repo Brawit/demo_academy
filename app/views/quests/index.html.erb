@@ -1,0 +1,21 @@
+<div class="p-6 bg-gray-100">
+  <div class="max-w-2xl mx-auto">
+    <div class="mb-5">
+      <h1 class="text-2xl font-bold">My Todo-list</h1>
+      <div class="my-5">
+        <%= link_to "My brag document", brag_path, class: "text-blue-500 underline" %>
+      </div>
+      <%= image_tag "profile.jpg", class: "w-32 h-32 rounded-full" %>
+    </div>
+
+    <div>
+      <%= turbo_frame_tag "new_quest_form" do %>
+        <%= render "form", quest: @quest %>
+      <% end %>
+
+      <%= turbo_frame_tag "quests" do %>
+        <%= render partial: "quest", collection: @quests, as: :quest %>
+      <% end %>
+    </div>
+  </div>
+</div>

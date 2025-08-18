@@ -1,0 +1,14 @@
+<%= turbo_frame_tag dom_id(quest) do %>
+  <div class="custom your style" >
+    <div class="custom your style">
+      <%= form_with model: quest, method: :patch do |f| %>
+        <%= f.check_box :is_done,
+    checked: quest.is_done, class: "custom your style", data: { controller: "checkbox", action: "change->checkbox#submit" }%>
+      <% end %>
+      <div class="custom your style <%= quest.is_done ? "line-through" : "" %>"><%= quest.name %></div>
+    </div>
+    <%= link_to quest_path(quest), data: { turbo_method: :delete }, class: "text-red-500" do %>
+      ------- Delete button --------
+    <% end %>
+  </div>
+<% end %>
