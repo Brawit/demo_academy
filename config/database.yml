@@ -29,6 +29,10 @@ queue:
   <<: *default
   url: <%= ENV['DATABASE_URL_PRODUCTION'] %>
 
+cache:
+  <<: *default
+  url: <%= ENV['DATABASE_URL_PRODUCTION'] %>
+  
 cable:
   production:
     <<: *default
