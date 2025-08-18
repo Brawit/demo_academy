@@ -17,10 +17,10 @@ class QuestsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create quest" do
     assert_difference("Quest.count") do
-      post quests_url, params: { quest: { is_done: @quest.is_done, name: @quest.name } }
+      post quests_url, params: { quest: { name: "My Quest" } }
     end
 
-    assert_redirected_to quest_url(Quest.last)
+    assert_redirected_to quests_url
   end
 
   test "should show quest" do
@@ -34,8 +34,8 @@ class QuestsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update quest" do
-    patch quest_url(@quest), params: { quest: { is_done: @quest.is_done, name: @quest.name } }
-    assert_redirected_to quest_url(@quest)
+    patch quest_url(@quest), params: { quest: { name: "Updated Quest" } }
+    assert_redirected_to quests_url
   end
 
   test "should destroy quest" do
