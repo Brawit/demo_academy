@@ -7,19 +7,19 @@ default: &default
 
 development:
   <<: *default
-  database: acade_development
+  database: <%= ENV['DB_NAME'] || 'acade_development' %>
   username: <%= ENV['DB_USERNAME'] || 'postgres' %>
   password: <%= ENV['DB_PASSWORD'] || 'postgres123' %>
   host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
-  port: 5432
+  port: <%= ENV['DB_PORT'] || 5432 %>
 
 test:
   <<: *default
-  database: acade_test
+  database: <%= ENV['DB_NAME_TEST'] || 'acade_test' %>
   username: <%= ENV['DB_USERNAME'] || 'postgres' %>
   password: <%= ENV['DB_PASSWORD'] || 'postgres123' %>
   host: <%= ENV['DB_HOST'] || '127.0.0.1' %>
-  port: 5432
+  port: <%= ENV['DB_PORT'] || 5432 %>
 
 production:
   <<: *default
@@ -27,4 +27,5 @@ production:
 
 cable:
   production:
+    <<: *default
     url: <%= ENV['DATABASE_URL_PRODUCTION'] %>
