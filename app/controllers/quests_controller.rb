@@ -26,36 +26,41 @@ class QuestsController < ApplicationController
 
     respond_to do |format|
       if @quest.save
+        format.html { redirect_to quests_url, notice: "Quest was successfully created." }
+        format.json { render json: @quest, status: :created }
         format.turbo_stream
-        format.html { redirect_to quests_path, notice: "Quest was successfully created." }
-        format.json { render :show, status: :created, location: @quest }
       else
+        format.html { render :new, status: :unprocessable_content }
+        format.json { render json: @quest.errors, status: :unprocessable_content }
         format.turbo_stream do
+          # แทนที่จะ render partial ของ quest ที่ล้มเหลว
           render turbo_stream: turbo_stream.replace(
             "new_quest_form",
-            partial: "form",
+            partial: "quests/form",
             locals: { quest: @quest }
-          )
+          ), status: :unprocessable_content
         end
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @quest.errors, status: :unprocessable_entity }
       end
     end
   end
+
+
 
   # PATCH/PUT /quests/1
   def update
     respond_to do |format|
       if @quest.update(quest_params)
+        format.html { redirect_to quests_url, notice: "Quest updated." }
+        format.json { render json: @quest, status: :ok }
         format.turbo_stream
-        format.html { redirect_to quests_path, notice: "Quest was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @quest }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @quest.errors, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @quest.errors, status: :unprocessable_content }
+        format.turbo_stream { render status: :unprocessable_content }
       end
     end
   end
+
 
   # DELETE /quests/1
   def destroy

@@ -63,4 +63,8 @@ group :test do
   gem "rspec-rails"
   gem "capybara"
   gem "selenium-webdriver", "~> 4.35"
+  gem "minitest"
+  gem "minitest-rails"
+  gem "simplecov", require: false
+  gem "rails-controller-testing"
 end
