@@ -16,26 +16,6 @@ class QuestsControllerTest < ActionDispatch::IntegrationTest
     assert_not_nil assigns(:quest)
   end
 
-  # GET /quests/new
-  test "should get new and assign quest" do
-    get new_quest_url
-    assert_response :success
-    assert_not_nil assigns(:quest)
-  end
-
-  # GET /quests/:id
-  test "should show quest" do
-    get quest_url(@quest)
-    assert_response :success
-  end
-
-  # GET /quests/:id/edit
-  test "should get edit" do
-    get edit_quest_url(@quest)
-    assert_response :success
-    assert_not_nil assigns(:quest)
-  end
-
   # POST /quests (HTML success)
   test "should create quest (HTML)" do
     assert_difference("Quest.count") do

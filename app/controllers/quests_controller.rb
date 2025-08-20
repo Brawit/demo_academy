@@ -1,23 +1,10 @@
 class QuestsController < ApplicationController
-  before_action :set_quest, only: %i[ show edit update destroy ]
+  before_action :set_quest, only: %i[ update destroy ]
 
   # GET /quests
   def index
     @quests = Quest.all
     @quest = Quest.new
-  end
-
-  # GET /quests/1
-  def show
-  end
-
-  # GET /quests/new
-  def new
-    @quest = Quest.new
-  end
-
-  # GET /quests/1/edit
-  def edit
   end
 
   # POST /quests
